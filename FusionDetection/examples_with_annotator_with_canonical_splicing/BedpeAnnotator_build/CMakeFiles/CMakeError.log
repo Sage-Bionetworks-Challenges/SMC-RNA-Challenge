@@ -1,0 +1,15 @@
+Performing C++ SOURCE FILE Test SUPPORTS_STD_CXX11 failed with the following output:
+Change Dir: /gscmnt/gc2501/maherlab/jzhang/SMC-RNA/examples_with_annotator/BedpeAnnotator_build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/gsc/bin/gmake" "cmTC_25b3b/fast"
+/gsc/bin/gmake -f CMakeFiles/cmTC_25b3b.dir/build.make CMakeFiles/cmTC_25b3b.dir/build
+gmake[1]: Entering directory `/gscmnt/gc2501/maherlab/jzhang/SMC-RNA/examples_with_annotator/BedpeAnnotator_build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_25b3b.dir/src.cxx.o
+/usr/bin/c++    -DSUPPORTS_STD_CXX11   --std=c++11 -o CMakeFiles/cmTC_25b3b.dir/src.cxx.o -c /gscmnt/gc2501/maherlab/jzhang/SMC-RNA/examples_with_annotator/BedpeAnnotator_build/CMakeFiles/CMakeTmp/src.cxx
+cc1plus: error: unrecognized command line option "-std=c++11"
+gmake[1]: *** [CMakeFiles/cmTC_25b3b.dir/src.cxx.o] Error 1
+gmake[1]: Leaving directory `/gscmnt/gc2501/maherlab/jzhang/SMC-RNA/examples_with_annotator/BedpeAnnotator_build/CMakeFiles/CMakeTmp'
+gmake: *** [cmTC_25b3b/fast] Error 2
+
+Source file was:
+int main() { return 0; }

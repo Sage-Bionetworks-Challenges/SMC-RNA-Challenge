@@ -1,0 +1,2 @@
+/gscmnt/gc2501/maherlab/jzhang/SMC-RNA/examples_with_annotator/BedpeAnnotator_build/src/CMakeFiles/bedpeAnnotator-bin.dir
+/gscmnt/gc2501/maherlab/jzhang/SMC-RNA/examples_with_annotator/BedpeAnnotator_build/src/CMakeFiles/bedpeAnnotator.dir

@@ -1,0 +1,20 @@
+Overall No Subsetting	1==1
+Overall Inter	$1!=$4
+Overall Intra	$1==$4
+Overall Intra and Distance>=1M	{a=0;b=0;}{if($9=="+") a=$3; else a=$2+1;}{if($10=="+") b=$5+1; else b=$6} $1==$4 && (b-a<=-1000000 || b-a>=1000000)
+Overall Intra and Distance<1M	{a=0;b=0;}{if($9=="+") a=$3; else a=$2+1;}{if($10=="+") b=$5+1; else b=$6} $1==$4 && !(b-a<=-1000000 || b-a>=1000000)
+Exon boundary No Subsetting	$(NF-5)==1
+Exon boundary Inter	$1!=$4 && $(NF-5)==1
+Exon boundary Intra	$1==$4 && $(NF-5)==1
+Exon boundary Intra and Distance>=1M	{a=0;b=0;}{if($9=="+") a=$3; else a=$2+1;}{if($10=="+") b=$5+1; else b=$6} $1==$4 && (b-a<=-1000000 || b-a>=1000000) && $(NF-5)==1
+Exon boundary Intra and Distance<1M	{a=0;b=0;}{if($9=="+") a=$3; else a=$2+1;}{if($10=="+") b=$5+1; else b=$6} $1==$4 && !(b-a<=-1000000 || b-a>=1000000) && $(NF-5)==1
+Canonical splicing No Subsetting	$(NF)==1
+Canonical splicing Inter	$1!=$4 && $(NF)==1
+Canonical splicing Intra	$1==$4 && $(NF)==1
+Canonical splicing Intra and Distance>=1M	{a=0;b=0;}{if($9=="+") a=$3; else a=$2+1;}{if($10=="+") b=$5+1; else b=$6} $1==$4 && (b-a<=-1000000 || b-a>=1000000) && $(NF)==1
+Non-Canonical Intra and Distance<1M	{a=0;b=0;}{if($9=="+") a=$3; else a=$2+1;}{if($10=="+") b=$5+1; else b=$6} $1==$4 && !(b-a<=-1000000 || b-a>=1000000) && $(NF)==1
+Canonical splicing and Exon Boundary No Subsetting	$(NF-5)==1 && $(NF)==1
+Canonical splicing and Exon Boundary Inter	$1!=$4 && $(NF-5)==1 && $(NF)==1
+Canonical splicing and Exon Boundary Intra	$1!==4 && $(NF-5)==1 && $(NF)==1
+Canonical splicing Intra and Distance>=1M       {a=0;b=0;}{if($9=="+") a=$3; else a=$2+1;}{if($10=="+") b=$5+1; else b=$6} $1==$4 && (b-a<=-1000000 || b-a>=1000000) && $(NF-5)==1 && $(NF)==1
+Canonical splicing and Exon Boundary and Distance<1M     {a=0;b=0;}{if($9=="+") a=$3; else a=$2+1;}{if($10=="+") b=$5+1; else b=$6} $1==$4 && !(b-a<=-1000000 || b-a>=1000000) && $(NF-5)==1 && $(NF)==1

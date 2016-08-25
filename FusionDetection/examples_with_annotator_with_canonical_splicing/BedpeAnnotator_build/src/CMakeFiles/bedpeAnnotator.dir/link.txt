@@ -1,0 +1,2 @@
+/usr/bin/ar cq libbedpeAnnotator.a  CMakeFiles/bedpeAnnotator.dir/Util.cpp.o CMakeFiles/bedpeAnnotator.dir/Bedpe.cpp.o CMakeFiles/bedpeAnnotator.dir/Gene2.cpp.o CMakeFiles/bedpeAnnotator.dir/Reference.cpp.o CMakeFiles/bedpeAnnotator.dir/Annotate.cpp.o CMakeFiles/bedpeAnnotator.dir/Dinucleo.cpp.o CMakeFiles/bedpeAnnotator.dir/AnnotateDi.cpp.o
+/usr/bin/ranlib libbedpeAnnotator.a

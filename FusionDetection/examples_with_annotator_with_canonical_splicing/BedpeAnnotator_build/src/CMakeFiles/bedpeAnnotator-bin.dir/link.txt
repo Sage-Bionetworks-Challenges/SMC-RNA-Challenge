@@ -1,0 +1,1 @@
+/usr/bin/c++    --std=c++0x -Wall -pthread -O3 -DNDEBUG   CMakeFiles/bedpeAnnotator-bin.dir/main.cpp.o  -o ../bin/fusionBedpeAnnotator -rdynamic libbedpeAnnotator.a 
