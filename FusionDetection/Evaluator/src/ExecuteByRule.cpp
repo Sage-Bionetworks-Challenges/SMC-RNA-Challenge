@@ -32,6 +32,7 @@ int ExecuteByRule::execute(Bedpe & res, Bedpe & truth, char * outputfile, char *
       string tmpfile1=string(outputfile)+"."+std::to_string((long long int)i)+"."+"result.bedpe";
       string tmpfile2=string(outputfile)+"."+std::to_string((long long int)i)+"."+"truth.bedpe";
       string ruleString=rtv[i].rule;
+	printf("\nRule: %s\n", ruleString.c_str());
       Bedpe  outRes;
       Bedpe  outTruth;
       cbr.cut(res, outRes, ruleString, tmpfile1);

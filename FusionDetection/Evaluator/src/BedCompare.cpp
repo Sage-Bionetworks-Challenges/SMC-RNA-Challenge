@@ -1,4 +1,5 @@
 #include "BedCompare.h"
+#include <stdio.h>
 
 bool isStrandKnown(string strand)
 {
@@ -197,6 +198,9 @@ int BedpeCompare::compare(Bedpe & res, Bedpe & truth, Gene & g, evaluate_t & et,
 //trans 1. 0 0; 2. compare;
     int num_res_trans=res.size()+pct.t_t+pct.f_t;;
     int num_truth_trans=truth.size()+pct.truth_t;
+    printf ("Num res trans: %d\n", num_res_trans);
+    printf ("Num truth trans: %d\n", num_truth_trans);
+    
     
     et.num_res_trans=num_res_trans;
     et.num_truth_trans=num_truth_trans;   
@@ -280,6 +284,8 @@ int BedpeCompare::compare(Bedpe & res, Bedpe & truth, Gene & g, evaluate_t & et,
 //2..
     int num_res_gene=resSP.size()+pct.t_g+pct.f_g;
     int num_truth_gene=truthSP.size()+pct.truth_g; 
+    printf ("Num res gene: %d\n", num_res_gene);
+    printf ("Num truth gene: %d\n", num_truth_gene);
     
 
     et.num_res_gene=num_res_gene;
