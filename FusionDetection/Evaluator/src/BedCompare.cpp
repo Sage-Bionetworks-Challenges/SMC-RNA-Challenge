@@ -107,7 +107,7 @@ int  getNewTruePos(const bedpe_t & tt, const bedpe_t & rr, const uint32_t & tt_p
 }
 
 
-int transcript_compare(Bedpe & res, Bedpe & truth, int resolution, int max_diff, double & sensitivity, double & precision, pseudo_counts_t & pct)
+int transcript_compare(Bedpe & res, Bedpe & truth, int resolution, int max_diff, double & sensitivity, double & precision, pseudo_counts_t & pct, evaluate_t & et)
 {
     int diff=resolution-1;
     if(diff<0)
@@ -132,6 +132,7 @@ int transcript_compare(Bedpe & res, Bedpe & truth, int resolution, int max_diff,
         {
              bedpe_t tt=truth.getBedpe(i);
              bedpe_t rr=res.getBedpe(j);
+         	cerr<<"check " + tt.name + " " + rr.name<<endl;
            
              if(tt.chr1==rr.chr1 && tt.chr2==rr.chr2 && tt.strand1==rr.strand1 && tt.strand2==rr.strand2)
              {
@@ -171,14 +172,25 @@ int transcript_compare(Bedpe & res, Bedpe & truth, int resolution, int max_diff,
     
     for(int i=0;i<found.size();i++)
     {
-        if(found[i]==1) fd++;
+        if(found[i]==1) {
+          fd++;
+        } else {
+          // False negatives
+          et.false_negatives.push_back(truth.getBedpe(i));
+        }
     }
 
     int ct=0; 
     for(int j=0;j<correct.size();j++)
     {
-        if(correct[j]==1)
+        if(correct[j]==1) {
             ct++;
+          // True positive
+          et.true_positives.push_back(res.getBedpe(j));
+        } else {
+          // False positives
+          et.false_positives.push_back(res.getBedpe(j));
+        }
     }
     
     //code checking 0 is not here
@@ -254,7 +266,7 @@ int BedpeCompare::compare(Bedpe & res, Bedpe & truth, Gene & g, evaluate_t & et,
     else
     {
         double sens_t, prec_t;
-        transcript_compare(res, truth, resolution, max_diff, sens_t, prec_t, pct);
+        transcript_compare(res, truth, resolution, max_diff, sens_t, prec_t, pct, et);
         double f1_t=f_score(sens_t,prec_t);
         
         et.sensitivity_t=my_db2string(sens_t);
@@ -274,16 +286,14 @@ int BedpeCompare::compare(Bedpe & res, Bedpe & truth, Gene & g, evaluate_t & et,
 //gene 1. id set pair; 2. 0 0; 3. compare;
 //1..
     Bed2SetPair bp;
-    vector<set_pair_t> resSP;
-    bp.getSetPair(res, resSP, g);
-    vector<set_pair_t> truthSP;
-    bp.getSetPair(truth, truthSP, g);
+    bp.getSetPair(res, et.resSP, g);
+    bp.getSetPair(truth, et.truthSP, g);
     SetPair sp;   
-    sp.merge(resSP);
-    sp.merge(truthSP);       
+    sp.merge(et.resSP);
+    sp.merge(et.truthSP);       
 //2..
-    int num_res_gene=resSP.size()+pct.t_g+pct.f_g;
-    int num_truth_gene=truthSP.size()+pct.truth_g; 
+    int num_res_gene=et.resSP.size()+pct.t_g+pct.f_g;
+    int num_truth_gene=et.truthSP.size()+pct.truth_g; 
     printf ("Num res gene: %d\n", num_res_gene);
     printf ("Num truth gene: %d\n", num_truth_gene);
     
@@ -339,7 +349,7 @@ int BedpeCompare::compare(Bedpe & res, Bedpe & truth, Gene & g, evaluate_t & et,
     }
     else //3
     {
-        int num_inter_gene=sp.numIntersectSet(resSP, truthSP);
+        int num_inter_gene=sp.numIntersectSet(et.resSP, et.truthSP, et);
         num_inter_gene+=pct.t_g;
         //evaluate;
         double sens_g=(num_inter_gene+0.0)/num_truth_gene;

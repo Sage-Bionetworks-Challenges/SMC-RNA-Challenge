@@ -93,6 +93,12 @@ typedef struct
 
 typedef struct
 {
+    vector<int> ids1;
+    vector<int> ids2;
+} set_pair_t;
+
+typedef struct
+{
     string name;
     
     int num_res_trans;
@@ -109,13 +115,15 @@ typedef struct
     string precision_g;
     string f_g;
     
+    vector<bedpe_t> false_negatives;
+    vector<bedpe_t> false_positives;
+    vector<bedpe_t> true_positives;
+    vector<set_pair_t> gene_true_positives;
+    vector<set_pair_t> gene_false_positives;
+    vector<set_pair_t> gene_false_negatives;
+    vector<set_pair_t> resSP;
+    vector<set_pair_t> truthSP;
 } evaluate_t;
-
-typedef struct
-{
-    vector<int> ids1;
-    vector<int> ids2;
-} set_pair_t;
 
 typedef struct
 {

@@ -181,7 +181,7 @@ int main(int argc, char * argv[])
     cerr<<"printing evaluation results..."<<endl;
    
     Printer per;
-    per.print(evaluates, (char*)output_file.c_str(), gene_file, base_resolution, max_diff, pseudo_counts, version);
+    per.print(evaluates, (char*)output_file.c_str(), gene_file, base_resolution, max_diff, pseudo_counts, version, g);
 
     return 0;
 }
