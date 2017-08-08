@@ -67,22 +67,40 @@ int SetPair::merge(vector<set_pair_t> & spv)
 }
 
 //use after merge
-int SetPair::numIntersectSet(vector<set_pair_t> & spv1,vector<set_pair_t> & spv2)
+int SetPair::numIntersectSet(vector<set_pair_t> & res,vector<set_pair_t> & truth, evaluate_t & et)
 {
-    vector<int> intersect(spv1.size(),0);
-    for(int i=0;i<spv1.size();i++)
+    vector<int> found(truth.size(),0);
+    vector<int> correct(res.size(),0);
+
+    for(int i=0;i<res.size();i++)
     {
-        for(int j=0;j<spv2.size();j++)
+        for(int j=0;j<truth.size();j++)
         {
-            int inter1=numIntersect(spv1[i].ids1, spv2[j].ids1);
-            int inter2=numIntersect(spv1[i].ids2, spv2[j].ids2);
-            if(inter1>0 && inter2>0)
-                intersect[i]=1;
+            int inter1=numIntersect(res[i].ids1, truth[j].ids1);
+            int inter2=numIntersect(res[i].ids2, truth[j].ids2);
+            if(inter1>0 && inter2>0) {
+                found[j]=1;
+                correct[i]=1;
+                et.gene_true_positives.push_back(truth[j]);
+            }
         }
     }
+
     int num=0;
-    for(int i=0;i<intersect.size();i++)
-        num+=intersect[i];
+    for(int i=0;i<found.size();i++) {
+      if (found[i] == 1) {
+        num += 1;
+      } else {
+        et.gene_false_negatives.push_back(truth[i]);
+      }
+    }
+
+    for(int i=0;i<correct.size();i++) {
+      if (correct[i] == 0) {
+        et.gene_false_positives.push_back(res[i]);
+      }
+    }
+
     return num;
 }
 

@@ -20,7 +20,7 @@ class SetPair
     public:
        SetPair(){};
        int merge(vector<set_pair_t> & spv);
-       int numIntersectSet(vector<set_pair_t> & spv1,vector<set_pair_t> & spv2); 
+       int numIntersectSet(vector<set_pair_t> & spv1,vector<set_pair_t> & spv2, evaluate_t & et); 
 };
 
 
