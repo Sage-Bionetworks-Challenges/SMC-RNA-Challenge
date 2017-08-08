@@ -20,7 +20,7 @@ class Printer
 {
     public:
         Printer(){};
-        int print(vector<evaluate_t> & evals, char * outputfile,  string gene_file, int base_resolution, int max_diff, string pseudo_counts, string version, Gene g);
+        int print(vector<evaluate_t> & evals, string outputfile,  string gene_file, int base_resolution, int max_diff, string pseudo_counts, string version, Gene g);
 };
 
 

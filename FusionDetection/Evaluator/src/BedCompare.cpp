@@ -132,7 +132,7 @@ int transcript_compare(Bedpe & res, Bedpe & truth, int resolution, int max_diff,
         {
              bedpe_t tt=truth.getBedpe(i);
              bedpe_t rr=res.getBedpe(j);
-         	cerr<<"check " + tt.name + " " + rr.name<<endl;
+         	   //cerr<<"check " + tt.name + " " + rr.name<<endl;
            
              if(tt.chr1==rr.chr1 && tt.chr2==rr.chr2 && tt.strand1==rr.strand1 && tt.strand2==rr.strand2)
              {
